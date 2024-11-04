@@ -1,3 +1,10 @@
+<div align="left">
+   <img src="https://github.com/devicons/devicon/blob/master/icons/react/react-original-wordmark.svg" title="react" alt="react" width="40" height="40"/>&nbsp;
+   <img src="https://github.com/devicons/devicon/blob/master/icons/webpack/webpack-original.svg" title="webpack" alt="webpack" width="40" height="40"/>&nbsp;
+</div>
+
+**React Sneakers** is a comprehensive React project designed for an online store focused on sneaker sales. The project showcases a robust logic system for managing e-commerce functionalities such as product display, cart management, and user interactions. Styled using **Sass**, it offers an elegant, responsive design that enhances user experience. The project is perfect for learning how to integrate state management, handle components, and implement a clean UI in React applications.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +75,22 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+npm start
+npm install gh-pages --save-dev
+-
+git init
+git add .
+git status
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/it2konst/react-sneakers.git
+git push -u origin main
+-
+package.json
+"homepage": "https://it2konst.github.io/react-sneakers",
+-
+"predeploy": "npm run build",
+"deploy": "gh-pages -d build",
+---
+npm run deploy
