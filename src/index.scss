@@ -53,48 +53,7 @@ input {
 
 header {
     border-bottom: 1px solid #eaeaea;
-}
-
-.card {
-    background-color: #ddd;
-    border: 1px solid #f8f8f8;
-    padding: 30px;
-    width: 220px;
-    border-radius: 40px;
-    margin-right: 30px;
-    margin-bottom: 30px;
-    transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
-    &:hover {
-        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.06);
-        transform: translateY(-5px);
-    }
-
-    span {
-        font-size: 13px;
-        opacity: 0.5;
-        text-transform: uppercase;
-    }
-
-    b {
-        font-size: 14px;
-    }
-
-    h5 {
-        font-weight: 400;
-        font-size: 14px;
-        // line-height: 17px;
-        // color: #828282;
-        margin-bottom: 13px;
-    }
-
-    img {
-        mix-blend-mode: multiply;
-    }
-
-    .favorite {
-        position: absolute;
-        cursor: pointer;
-    }
+    gap: 16px;
 }
 
 .button {
@@ -110,6 +69,22 @@ header {
         box-shadow: 0 20px 35px rgba(0, 0, 0, 0.06);
         opacity: 0.8;
     }
+}
+
+.content-wrapper {
+    @media (max-width: 768px) {
+        flex-wrap: wrap;
+        gap: 16px;
+        justify-content: center !important;
+    }
+}
+
+.card-wrapper {
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    // @media (max-width: 992px) {
+    // }
 }
 
 .search-block {
