@@ -1,4 +1,4 @@
-function Header() {
+function Header(props) {
     return (
         <header className="d-flex flex-wrap justify-between align-center p-40">
             <div className="d-flex align-center">
@@ -9,7 +9,7 @@ function Header() {
                 </div>
             </div>
             <ul className="d-flex">
-                <li className="d-flex mr-30">
+                <li className="d-flex mr-30 cu-p" onClick={props.onClickCart}>
                     <img className="mr-15" src="./img/header/cart.svg" alt="cart" width={18} height={18} />
                     <span>1205 руб.</span>
                 </li>
