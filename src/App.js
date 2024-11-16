@@ -3,51 +3,79 @@ import CartDrawer from "./components/CartDrawer";
 import Header from "./components/Header";
 import Card from "./components/Card/Card";
 
-// const arrSneakers = [
-//     { title: "Мужские Кроссовки Nike Blazer Mid Suede", price: "12 999", imgUrl: "./img/cards/nike-blazer-mid-01.webp" },
-//     { title: "Мужские Кроссовки Nike Air Max 270", price: "12 999", imgUrl: "./img/cards/nike-air-02.webp" },
-//     { title: "Мужские Кроссовки Nike Blazer Mid Suede", price: "8 499", imgUrl: "./img/cards/nike-blazer-mid-03.webp" },
-//     { title: "Кроссовки Puma X Aka Boku Future Rider", price: "8 999", imgUrl: "./img/cards/aka-boku-04.webp" },
-// ];
-
 function App() {
     const [itemsSneakers, setItemsSneakers] = React.useState([]);
+    const [cartItems, setCartItems] = React.useState([]);
+    const [searchValue, setSearchValue] = React.useState("");
     const [cartOpened, setCartOpened] = React.useState(false);
 
     React.useEffect(() => {
         fetch("https://6737fa994eb22e24fca69cdb.mockapi.io/items")
-            .then((response) => response.json())
-            .then((json) => setItemsSneakers(json));
+            .then((response) => {
+                return response.json();
+            })
+            .then((json) => {
+                setItemsSneakers(json);
+            });
     }, []);
+
+    const onAddToCart = (obj) => {
+        // setCartItems((prev) => [...prev, obj]);
+        // setCartItems([...cartItems, obj]);
+        const itemExists = cartItems.some((item) => item.title === obj.title);
+        if (!itemExists) {
+            setCartItems((prev) => [...prev, obj]);
+        } else {
+            alert("Этот товар уже в корзине!");
+        }
+    };
+
+    const onChangeSearchInput = (event) => {
+        setSearchValue(event.target.value);
+    };
 
     return (
         <div className="wrapper clear">
-            {cartOpened && <CartDrawer onClose={() => setCartOpened(false)} />}
+            {cartOpened && <CartDrawer items={cartItems} itemsSneakers={cartItems} onClose={() => setCartOpened(false)} />}
             <Header onClickCart={() => setCartOpened(true)} />
 
             <div className="content p-40">
                 <div className="content-wrapper d-flex align-center justify-between mb-40">
-                    <h1>Все кроссовки</h1>
+                    {/* <h1>{searchValue ? `Поиск по запросу: "${searchValue}"` : "Все кроссовки"}</h1> */}
+                    <h1>
+                        {searchValue ? (
+                            <>
+                                Поиск по запросу: <br /> "{searchValue}"
+                            </>
+                        ) : (
+                            "Все кроссовки"
+                        )}
+                    </h1>
                     <div className="search-block d-flex">
                         <img src="./img/search.svg" alt="Search" />
-                        <input placeholder="Поиск..." />
+                        {searchValue && <img className="clear" onClick={() => setSearchValue("")} src="./img/cards/remove-act.svg" alt="Clear" />}
+                        <input onChange={onChangeSearchInput} value={searchValue} placeholder="Поиск..." />
                     </div>
                 </div>
 
                 <div className="card-wrapper d-flex">
-                    {itemsSneakers.map((obj) => (
-                        <Card
-                            title={obj.title}
-                            price={obj.price}
-                            imgUrl={obj.imgUrl}
-                            onClickFavorite={() => {
-                                console.log("click1");
-                            }}
-                            onClickPlus={() => {
-                                console.log("click2");
-                            }}
-                        />
-                    ))}
+                    {/* {itemsSneakers.map((item, index) => ( */}
+                    {itemsSneakers
+                        .filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase()))
+                        .map((item, index) => (
+                            <Card
+                                key={index}
+                                title={item.title}
+                                price={item.price}
+                                imgUrl={item.imgUrl}
+                                onFavorite={() => {
+                                    console.log("click1");
+                                }}
+                                onPlus={(obj) => {
+                                    onAddToCart(obj);
+                                }}
+                            />
+                        ))}
                 </div>
             </div>
         </div>

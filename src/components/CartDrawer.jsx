@@ -1,30 +1,23 @@
-function CartDrawer(props) {
+function CartDrawer({ onClose, items = [] }) {
     return (
         <div className="overlay">
             <div className="drawer d-flex flex-column">
                 <h2 className="d-flex justify-between mb-30">
                     Корзина
-                    <img className="cu-p" onClick={props.onClose} src="./img/cards/remove-act.svg" alt="Remove" />
+                    <img className="cu-p" onClick={onClose} src="./img/cards/remove-act.svg" alt="Remove" />
                 </h2>
 
                 <div className="items">
-                    <div className="cartItem d-flex align-center">
-                        <div className="cartItemImg" style={{ backgroundImage: 'url("./img/cards/nike-blazer-mid-01.webp")' }}></div>
-                        <div className="mr-20 flex">
-                            <p className="mb-5">Мужские Кроссовки Nike Blazer Mid Suede</p>
-                            <b>Цена: 12 999 руб.</b>
+                    {items.map((obj) => (
+                        <div className="cartItem d-flex align-center">
+                            <div className="cartItemImg" style={{ backgroundImage: `url("${obj.imgUrl}")` }}></div>
+                            <div className="mr-20 flex">
+                                <p className="mb-5">{obj.title}</p>
+                                <b>{obj.price} руб.</b>
+                            </div>
+                            <img src="./img/cards/remove-act.svg" alt="Remove" />
                         </div>
-                        <img src="./img/cards/remove-act.svg" alt="Remove" />
-                    </div>
-
-                    <div className="cartItem d-flex align-center">
-                        <div className="cartItemImg" style={{ backgroundImage: 'url("./img/cards/nike-blazer-mid-01.webp")' }}></div>
-                        <div className="mr-20 flex">
-                            <p className="mb-5">Мужские Кроссовки Nike Blazer Mid Suede</p>
-                            <b>Цена: 12 999 руб.</b>
-                        </div>
-                        <img src="./img/cards/remove-act.svg" alt="Remove" />
-                    </div>
+                    ))}
                 </div>
 
                 <div className="cartTotalBlock">
