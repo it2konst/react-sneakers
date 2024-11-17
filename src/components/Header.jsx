@@ -9,12 +9,17 @@ function Header(props) {
                 </div>
             </div>
             <ul className="d-flex">
-                <li className="d-flex mr-30 cu-p" onClick={props.onClickCart}>
-                    <img className="mr-15" src="./img/header/cart.svg" alt="cart" width={18} height={18} />
+                <li onClick={props.onClickCart}>
+                    <img src="./img/header/cart.svg" alt="cart" width={18} height={18} />
                     <span>1205 руб.</span>
                 </li>
                 <li>
+                    <img src="./img/header/favorite.webp" alt="User" width={18} height={18} />
+                    <span>Закладки</span>
+                </li>
+                <li>
                     <img src="./img/header/user-svg.svg" alt="User" width={18} height={18} />
+                    <span>Профиль</span>
                 </li>
             </ul>
         </header>

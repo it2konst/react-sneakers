@@ -54,6 +54,24 @@ input {
 header {
     border-bottom: 1px solid #eaeaea;
     gap: 16px;
+
+    ul {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        cursor: pointer;
+
+        li {
+            display: flex;
+            gap: 6px;
+            transition: filter 0.2s ease-in-out, opacity 0.2s ease-in-out;
+            &:hover {
+                // box-shadow: 0 20px 35px rgba(0, 0, 0, 0.06);
+                filter: drop-shadow(4px 4px 2px silver);
+                opacity: 0.8;
+            }
+        }
+    }
 }
 
 .button {
@@ -145,8 +163,13 @@ header {
         }
     }
 
+    .drawer-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex: 1 1 0;
+    }
     .items {
-        flex: 1;
         overflow: auto;
         margin-bottom: 30px;
     }
